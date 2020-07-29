@@ -23,3 +23,29 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task hello {
+    group = 'Greeting'
+    description = 'Produces a world greeting'
+    doLast {
+        println 'Hello World'
+    }
+}
+
+task greet(type: com.elsevier.GreetingTask) {
+    group = 'Greeting'
+    description = 'Produces a name greeting'
+    firstName = 'Elsevier'
+}
+
+task printJavaVersion(type: com.elsevier.PrintToolVersionTask) {
+    group = 'Print Version'
+    description = 'Prints Java version'
+    tool = 'java'
+}
+
+task printGroovyVersion(type: com.elsevier.PrintToolVersionTask) {
+    group = 'Print Version'
+    description = 'Prints Groovy version'
+    tool = 'groovy'
+}
