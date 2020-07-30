@@ -19,7 +19,12 @@ public class GreetingController {
   }
 
   @GetMapping
-  public GreetingDto getIndex(@RequestParam(required = false) String name) {
+  public GreetingDto getGreeting(@RequestParam(required = false) String name) {
     return greetingService.greet(StringUtils.isEmpty(name) ? "Elsevier" : name);
+  }
+
+  @GetMapping("/admin")
+  public GreetingDto getAdminGreeting() {
+    return greetingService.greet("Admin");
   }
 }
