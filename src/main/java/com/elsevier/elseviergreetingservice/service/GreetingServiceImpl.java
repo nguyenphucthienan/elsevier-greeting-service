@@ -2,22 +2,22 @@ package com.elsevier.elseviergreetingservice.service;
 
 import com.elsevier.elseviergreetingservice.domain.Greeting;
 import com.elsevier.elseviergreetingservice.dto.GreetingDto;
-import com.elsevier.elseviergreetingservice.mapper.GreetingMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
 
-  private final GreetingMapper greetingMapper;
+  private final ModelMapper modelMapper;
 
-  public GreetingServiceImpl(GreetingMapper greetingMapper) {
-    this.greetingMapper = greetingMapper;
+  public GreetingServiceImpl(ModelMapper modelMapper) {
+    this.modelMapper = modelMapper;
   }
 
   @Override
   public GreetingDto greet(String name) {
     Greeting greeting = new Greeting();
     greeting.setMessage("Hello " + name);
-    return greetingMapper.greetingToGreetingDto(greeting);
+    return modelMapper.map(greeting, GreetingDto.class);
   }
 }
